@@ -7,6 +7,7 @@ var specialCharacters =['%','!','@','#','$','^','&','*','(',')','+','<','>','?']
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+
 // Write password to the #password input
 function generatePassword() {
   var newPassword = ""
@@ -17,6 +18,8 @@ if (passwordLength < 8 || passwordLength > 128) {
   return
 }
 
+
+//  code for the prompts
   var hasLowerCase = confirm("Do you want to use lowercase?")
   console.log(hasLowerCase)
   var hasUpperCase = confirm("Do you want to use uppercase?")
@@ -26,30 +29,34 @@ if (passwordLength < 8 || passwordLength > 128) {
   var hasSpecialCharacters = confirm("Do you want to use special characters?")
   console.log(hasSpecialCharacters)
 
+
   var result=[]
-  if (hasLowerCase) {
-    result = result.concat(hasLowerCase);
+  if (lowerCase) {
+    result = result.concat(lowerCase);
   }
 
-  if(hasUpperCase) {
-    result = result.concat(hasUpperCase);
+  if(upperCase) {
+    result = result.concat(upperCase);
   }
 
-  if (hasNumeric) {
-    result = result.concat(hasNumeric);
+  if (numeric) {
+    result = result.concat(numeric);
   }
 
-  if (hasSpecialCharacters) {
-    result = result.concat(hasSpecialCharacters)
+  if (specialCharacters) {
+    result = result.concat(specialCharacters)
   }
   console.log(result)
 
-  for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-    
+// for loop
+  var randomPassword=""
+
+  for (let index = 0; index < passwordLength; index++) {
+    randomPassword = randomPassword + result[Math.floor(Math.random() * result.length)];
+    console.log(randomPassword)
   }
 
-  return newPassword
+  return randomPassword
 
 }
 
@@ -60,9 +67,6 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
